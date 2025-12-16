@@ -1,0 +1,6 @@
+.containerSportSelection {
+  display: flex;
+  justify-content: center; /* Centers Horizontally (X-axis) */
+  align-items: center;     /* Centers Vertically (Y-axis) */
+  height: 100vh;           /* Ensures container takes full viewport height */
+}
