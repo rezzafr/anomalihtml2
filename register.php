@@ -63,7 +63,7 @@
                         </form>
                         
                         <p class="text-center mt-4 mb-0">
-                            Already have an account? <a href="login.html" class="text-decoration-none">Login here</a>.
+                            Already have an account? <a href="login.php" class="text-decoration-none">Login here</a>.
                         </p>
                     </div>
                 </div>

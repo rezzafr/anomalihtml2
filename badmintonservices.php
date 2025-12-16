@@ -175,8 +175,20 @@ $result = $conn->query($sql);
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" name="customer_phone" required>
+                            <input type="tel" class="form-control" name="customer_phone" required pattern="[0-9]{9,11}" inputmode="numeric" placeholder="e.g. 0123456789">
                         </div>
+                        <script>
+                            document.getElementById('bookingForm').addEventListener('submit', function(e) {
+                            const phoneInput = document.querySelector('input[name="customer_phone"]');
+                            const phone = phoneInput.value;
+                            if (!/^[0-9]{9,11}$/.test(phone)) {
+                            e.preventDefault();
+                            alert("Please enter a valid phone number (numbers only).");
+                            phoneInput.focus();
+                        }
+                    });
+                    </script>
+
 
                         <button type="submit" class="btn btn-success w-100 py-2 mt-2">Confirm Payment & Book</button>
                     </form>

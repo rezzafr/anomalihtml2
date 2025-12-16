@@ -22,7 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date        = $_POST['booking_date'];
     $time_slot   = $_POST['time_slot']; // "08:00 AM - 10:00 AM"
     $cust_name   = $_POST['customer_name'];
-    $cust_phone  = $_POST['customer_phone'];
+    $cust_phone = $_POST['customer_phone'];
+
+if (!preg_match('/^[0-9]{9,11}$/', $cust_phone)) {
+    redirectWithError($redirectTarget, "Invalid phone number. Numbers only.");
+};
 
     // 3. Parse Time Slot
     $times = explode(' - ', $time_slot);
