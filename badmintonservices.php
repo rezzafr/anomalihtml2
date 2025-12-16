@@ -175,7 +175,8 @@ $result = $conn->query($sql);
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" name="customer_phone" required pattern="[0-9]{9,11}" inputmode="numeric" placeholder="e.g. 0123456789">
+                            <input type="tel" class="form-control" name="customer_phone" required pattern="[0-9]{9,11}" title="Please enter a valid phone number (9–11 digits, numbers only)"inputmode="numeric" placeholder="e.g. 0123456789">
+
                         </div>
                         <script>
                             document.getElementById('bookingForm').addEventListener('submit', function(e) {
