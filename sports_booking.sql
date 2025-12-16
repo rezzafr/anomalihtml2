@@ -40,9 +40,11 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   `status` enum('confirmed','cancelled','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'confirmed',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_bookings_slot` (`service_id`,`booking_date`,`start_time`,`end_time`),
   KEY `user_id` (`user_id`),
-  KEY `service_id` (`service_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+ KEY `service_id` (`service_id`),
+  CONSTRAINT `bookings_valid_time` CHECK ((`start_time` < `end_time`))
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `bookings`
@@ -50,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `bookings` (
 
 INSERT INTO `bookings` (`id`, `user_id`, `service_id`, `booking_date`, `start_time`, `end_time`, `customer_name`, `customer_phone`, `status`, `created_at`) VALUES
 (1, 5, 3, '2025-12-17', '18:00:00', '20:00:00', 'raisal', '01000', 'confirmed', '2025-12-16 14:58:06'),
-(2, 5, 3, '2025-12-17', '18:00:00', '20:00:00', 'raisal', '01010010', 'confirmed', '2025-12-16 15:13:57');
+(2, 5, 3, '2025-12-17', '20:00:00', '22:00:00', 'raisal', '01010010', 'confirmed', '2025-12-16 15:13:57');
 
 -- --------------------------------------------------------
 

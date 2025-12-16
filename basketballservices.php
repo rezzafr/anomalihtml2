@@ -31,7 +31,7 @@ $result = $conn->query($sql);
         .step-item.done { color: #4ade80; opacity: 1; }
         
         /* Calendar Styles (Restored) */
-        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+         .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; text-align: center; }
         .day-name { font-weight: 600; color: #6c757d; margin-bottom: 10px; }
         .calendar-day {
@@ -56,8 +56,14 @@ $result = $conn->query($sql);
 <main class="container mb-5 mt-5">
     <h2 class="text-center mb-4">Book Your Basketball Slot</h2>
 
-    <?php if (isset($_GET['error'])): ?>
-        <div class="alert alert-danger text-center"><?php echo htmlspecialchars($_GET['error']); ?></div>
+<?php if (isset($_GET['error']) || isset($_GET['msg'])): ?>
+        <?php 
+            $alertType = isset($_GET['error']) ? 'danger' : 'success';
+            $alertText = isset($_GET['error']) ? $_GET['error'] : $_GET['msg'];
+        ?>
+        <div class="alert alert-<?php echo $alertType; ?> text-center" role="alert">
+            <?php echo htmlspecialchars($alertText); ?>
+        </div>
     <?php endif; ?>
 
     <div class="card booking-card mx-auto" style="max-width: 900px;">

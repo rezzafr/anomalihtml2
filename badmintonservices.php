@@ -56,8 +56,14 @@ $result = $conn->query($sql);
 <main class="container mb-5 mt-5">
     <h2 class="text-center mb-4">Book Your Badminton Slot</h2>
 
-    <?php if (isset($_GET['error'])): ?>
-        <div class="alert alert-danger text-center"><?php echo htmlspecialchars($_GET['error']); ?></div>
+    <?php if (isset($_GET['error']) || isset($_GET['msg'])): ?>
+        <?php 
+            $alertType = isset($_GET['error']) ? 'danger' : 'success';
+            $alertText = isset($_GET['error']) ? $_GET['error'] : $_GET['msg'];
+        ?>
+        <div class="alert alert-<?php echo $alertType; ?> text-center" role="alert">
+            <?php echo htmlspecialchars($alertText); ?>
+        </div>
     <?php endif; ?>
 
     <div class="card booking-card mx-auto" style="max-width: 900px;">
